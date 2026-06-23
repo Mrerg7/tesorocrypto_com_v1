@@ -1,0 +1,329 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import AcquisitionCTA from '../components/AcquisitionCTA.astro';
+import Footer from '../components/Footer.astro';
+import Nav from '../components/Nav.astro';
+import { SITE } from '../consts';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const siteEntry = await getEntry('site', 'default');
+if (!siteEntry) throw new Error('Site config missing');
+const siteConfig = siteEntry.data;
+
+const reasons = (await getCollection('reasons')).sort(
+  (a, b) => a.data.number - b.data.number,
+);
+---
+
+<BaseLayout>
+  <Nav />
+
+  <main>
+    <!-- HERO -->
+    <header class="hero-bg min-h-[100dvh] flex items-center pt-16 relative">
+      <div class="max-w-screen-xl mx-auto px-6 pt-12 pb-20">
+        <div class="max-w-5xl">
+          <!-- Badge -->
+          <div class="inline-flex items-center gap-x-2 px-4 py-1.5 rounded-3xl bg-white/10 backdrop-blur-md border border-white/20 mb-8">
+            <div class="flex items-center gap-x-1.5">
+              <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+              <span class="text-emerald-400 text-xs font-semibold tracking-[1.5px] uppercase">Premium .com • Available Now</span>
+            </div>
+          </div>
+
+          <div class="max-w-4xl">
+            <h1 class="font-display text-[4rem] md:text-[5.5rem] leading-[0.95] tracking-[-4px] font-extrabold mb-2">
+              <span class="gold-gradient">Tesorocrypto</span><br />
+              <span class="text-5xl md:text-6xl text-white tracking-tight">.com</span>
+            </h1>
+
+            <p class="text-3xl md:text-4xl text-white font-display font-semibold tracking-tight mt-2 mb-3">
+              Crypto Treasure
+            </p>
+
+            <p class="max-w-2xl text-xl md:text-2xl text-zinc-400 font-light tracking-tight leading-tight mb-10">
+              The definitive premium domain for the next era of global digital wealth creation — where cryptocurrency, DeFi, and digital assets converge.
+            </p>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <AcquisitionCTA label="Secure This Domain" variant="white" icon="fa-arrow-right-long" />
+            <a href="#opportunity" class="px-8 py-4 border border-white/30 hover:bg-white/5 active:bg-white/10 transition-all font-semibold text-lg rounded-3xl flex items-center justify-center gap-x-2 w-full sm:w-auto text-white no-underline">
+              <span>Explore the Opportunity</span>
+            </a>
+          </div>
+
+          <div class="mt-10 flex items-center gap-x-8 text-sm">
+            <div class="flex items-center gap-x-2 text-zinc-400">
+              <i class="fa-solid fa-check text-emerald-400"></i>
+              <span>Global Brand Potential</span>
+            </div>
+            <div class="flex items-center gap-x-2 text-zinc-400">
+              <i class="fa-solid fa-check text-emerald-400"></i>
+              <span>Instant Credibility</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="absolute bottom-10 left-1/2 -translate-x-1/2 hidden lg:block">
+        <div class="flex flex-col items-center text-xs tracking-[2px] text-zinc-500">
+          <span>SCROLL TO EXPLORE</span>
+          <i class="fa-solid fa-chevron-down mt-1.5 animate-bounce"></i>
+        </div>
+      </div>
+    </header>
+
+    <!-- TRUST BAR -->
+    <div class="border-b border-zinc-800 bg-zinc-900/60 py-5">
+      <div class="max-w-screen-xl mx-auto px-6">
+        <div class="flex flex-wrap justify-center md:justify-between items-center gap-x-8 gap-y-3 text-sm">
+          {
+            siteConfig.trustPoints.map((point) => (
+              <div class="flex items-center gap-x-2 text-zinc-400">
+                <i class="fa-solid fa-circle-check text-amber-400"></i>
+                <span class="font-medium">{point}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- THE MEANING -->
+    <section id="meaning" class="max-w-screen-xl mx-auto px-6 pt-20 pb-16">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-14">
+          <div class="inline-block px-4 py-1 rounded-3xl bg-amber-400/10 text-amber-400 text-xs font-bold tracking-[2px] mb-4">THE NAME</div>
+          <h2 class="section-header tracking-[-2.5px]">Tesorocrypto means<br /><span class="gold-gradient">Crypto Treasure</span></h2>
+          <p class="mt-4 text-xl text-zinc-400">Two powerful words. One unforgettable brand.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-10 items-center">
+          <div>
+            <div class="prose prose-invert prose-lg max-w-none text-zinc-300 space-y-4">
+              <p class="leading-relaxed">"Tesoro" is the word for <strong class="text-white">treasure</strong> in Spanish, Italian, Portuguese, and multiple other languages spoken by over 600 million people worldwide.</p>
+              <p class="leading-relaxed">Combined with "Crypto", it creates a name that is:</p>
+            </div>
+
+            <ul class="mt-6 space-y-4 text-lg">
+              <li class="flex items-start gap-x-3">
+                <i class="fa-solid fa-check-circle text-emerald-400 mt-1.5 flex-shrink-0"></i>
+                <span><strong>Evocative & Aspirational</strong> — Instantly signals wealth, discovery, and value</span>
+              </li>
+              <li class="flex items-start gap-x-3">
+                <i class="fa-solid fa-check-circle text-emerald-400 mt-1.5 flex-shrink-0"></i>
+                <span><strong>Memorable & Pronounceable</strong> — Easy to say in English, Spanish, and beyond</span>
+              </li>
+              <li class="flex items-start gap-x-3">
+                <i class="fa-solid fa-check-circle text-emerald-400 mt-1.5 flex-shrink-0"></i>
+                <span><strong>Brand-Ready</strong> — Perfect for logos, apps, marketing campaigns, and merchandise</span>
+              </li>
+              <li class="flex items-start gap-x-3">
+                <i class="fa-solid fa-check-circle text-emerald-400 mt-1.5 flex-shrink-0"></i>
+                <span><strong>Globally Relevant</strong> — Especially powerful in high-growth crypto markets across Latin America, Europe, and emerging economies</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-10">
+            <div class="text-sm uppercase tracking-[2px] text-zinc-500 mb-4">LINGUISTIC POWER</div>
+            <div class="space-y-6 text-lg">
+              <div>
+                <div class="font-mono text-xs text-amber-400 tracking-widest mb-1">SPANISH / PORTUGUESE / ITALIAN</div>
+                <div class="text-3xl font-semibold tracking-tight">Tesoro = Treasure</div>
+              </div>
+              <div class="pt-4 border-t border-zinc-700">
+                <div class="text-zinc-400">In the crypto era, <span class="text-white font-medium">treasure</span> is no longer buried gold — it is digital, borderless, and accessible to anyone with vision.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE OPPORTUNITY -->
+    <section id="opportunity" class="bg-zinc-900 border-y border-zinc-800 py-20">
+      <div class="max-w-screen-xl mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center mb-12">
+            <div class="inline-block px-4 py-1 rounded-3xl bg-emerald-400/10 text-emerald-400 text-xs font-bold tracking-[2px] mb-4">THE CRYPTO WEALTH REVOLUTION</div>
+            <h2 class="section-header tracking-[-2.5px]">Anyone, anywhere, can now<br />create <span class="gold-gradient">enormous wealth</span>.</h2>
+          </div>
+
+          <div class="prose prose-invert prose-lg max-w-none text-zinc-300 space-y-5">
+            <p class="text-xl leading-relaxed">With the advent of cryptocurrency, the old rules of wealth creation have been fundamentally rewritten. What once required institutional access, geographic proximity to financial centers, or significant starting capital can now be pursued by a talented individual from almost any location on Earth.</p>
+
+            <p>From a laptop in Manila to a co-working space in Lagos, from Buenos Aires to Berlin — people are building generational wealth through DeFi protocols, digital asset trading, NFT creation, blockchain infrastructure, and new financial primitives that didn't exist a decade ago.</p>
+
+            <p>This is the greatest redistribution of financial opportunity in modern history. The winners will be those who build trusted brands that cut through the noise and speak directly to this new global class of digital prospectors.</p>
+          </div>
+
+          <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="reason-card bg-zinc-950 border border-zinc-800 rounded-2xl p-6 text-center">
+              <div class="text-4xl font-semibold text-white tracking-tighter">24/7</div>
+              <div class="text-sm text-zinc-400 mt-1">Global Markets</div>
+            </div>
+            <div class="reason-card bg-zinc-950 border border-zinc-800 rounded-2xl p-6 text-center">
+              <div class="text-4xl font-semibold text-white tracking-tighter">Billions</div>
+              <div class="text-sm text-zinc-400 mt-1">in Daily Volume</div>
+            </div>
+            <div class="reason-card bg-zinc-950 border border-zinc-800 rounded-2xl p-6 text-center">
+              <div class="text-4xl font-semibold text-white tracking-tighter">200M+</div>
+              <div class="text-sm text-zinc-400 mt-1">Crypto Users Worldwide</div>
+            </div>
+            <div class="reason-card bg-zinc-950 border border-zinc-800 rounded-2xl p-6 text-center">
+              <div class="text-4xl font-semibold text-white tracking-tighter">&infin;</div>
+              <div class="text-sm text-zinc-400 mt-1">Opportunity</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY PREMIUM -->
+    <section id="why-premium" class="max-w-screen-xl mx-auto px-6 pt-20 pb-16">
+      <div class="max-w-3xl mx-auto text-center mb-14">
+        <div class="inline-block px-4 py-1 rounded-3xl bg-amber-400/10 text-amber-400 text-xs font-bold tracking-[2px] mb-4">PREMIUM ASSET</div>
+        <h2 class="section-header tracking-[-2.5px]">Why Tesorocrypto.com<br />commands a <span class="gold-gradient">premium acquisition price</span></h2>
+        <p class="mt-5 text-xl text-zinc-400">This is not just a domain. It is a strategic brand foundation in one of the highest-growth sectors of the 21st century.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {
+          reasons.map((reason) => (
+            <div class="reason-card bg-zinc-900 border border-zinc-800 rounded-3xl p-8 flex flex-col">
+              <div class="w-12 h-12 flex items-center justify-center rounded-2xl gold-glow bg-opacity-10 mb-6">
+                <span class="text-2xl font-extrabold font-display text-zinc-950">{String(reason.data.number).padStart(2, '0')}</span>
+              </div>
+              <h3 class="font-semibold text-xl tracking-tight mb-3">{reason.data.title}</h3>
+              <p class="text-zinc-400 leading-relaxed flex-grow">{reason.data.description}</p>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="max-w-3xl mx-auto mt-12 text-center text-sm text-zinc-500 border-t border-zinc-800 pt-8">
+        In a market where ultra-premium keyword domains in crypto, AI, and finance regularly transact at significant multiples, Tesorocrypto.com represents a rare, ownable piece of digital real estate with both immediate utility and long-term strategic value.
+      </div>
+    </section>
+
+    <!-- USE CASES -->
+    <section id="use-cases" class="bg-zinc-900 border-y border-zinc-800 py-20">
+      <div class="max-w-screen-xl mx-auto px-6">
+        <div class="max-w-3xl mx-auto text-center mb-14">
+          <div class="inline-block px-4 py-1 rounded-3xl bg-emerald-400/10 text-emerald-400 text-xs font-bold tracking-[2px] mb-4">BUILT FOR BUILDERS</div>
+          <h2 class="section-header tracking-[-2.5px]">Perfect for visionary<br />crypto projects</h2>
+          <p class="mt-3 text-xl text-zinc-400">This name positions your project as the place where people come to find real value in the digital economy.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {
+            siteConfig.useCaseCategories.map((useCase, i) => (
+              <div class="use-case-card bg-zinc-950 border border-zinc-800 hover:border-amber-400/60 rounded-3xl p-8 flex flex-col">
+                <div class="flex items-center gap-x-4 mb-5">
+                  <div class="w-11 h-11 rounded-2xl gold-glow flex items-center justify-center flex-shrink-0">
+                    <span class="text-zinc-950 font-bold text-lg">{i + 1}</span>
+                  </div>
+                  <div>
+                    <div class="font-semibold text-lg tracking-tight">{useCase.title}</div>
+                  </div>
+                </div>
+                <p class="text-zinc-400 flex-grow text-[15px] leading-relaxed">{useCase.description}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- THIS IS MORE THAN A DOMAIN -->
+    <section class="max-w-screen-xl mx-auto px-6 py-20">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="mx-auto mb-8 inline-flex items-center justify-center w-20 h-20 rounded-full bg-white/5 border border-white/10">
+          <i class="fa-solid fa-gem text-4xl gold-gradient"></i>
+        </div>
+
+        <h2 class="font-display text-5xl md:text-6xl tracking-[-2.5px] leading-none font-extrabold mb-6">
+          This Is More Than a Domain —<br />
+          <span class="gold-gradient">It's the Vault Key</span>
+        </h2>
+
+        <div class="prose prose-invert prose-lg max-w-2xl mx-auto text-zinc-300 space-y-4">
+          <p>
+            In a digital landscape crowded with generic names and forgettable handles, <strong class="text-white">tesorocrypto.com</strong> stands apart. It is the name that positions its owner as the trusted custodian of digital wealth — serious, established, and globally resonant.
+          </p>
+          <p>
+            Whether you are the founder ready to claim your place at the center of the crypto economy, the entrepreneur building the next category-defining platform, or the investor who recognizes long-term brand equity in the most valuable TLD on Earth, this domain is ready to serve as the cornerstone.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACQUISITION SECTION -->
+    <section class="bg-zinc-900 border-y border-zinc-800 py-16">
+      <div class="max-w-screen-xl mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center mb-10">
+            <div class="inline-block px-5 py-1.5 rounded-3xl gold-glow text-zinc-950 text-xs font-extrabold tracking-[1.5px] mb-4">ACQUISITION</div>
+            <h2 class="section-header tracking-[-2px]">Ready to claim<br />your crypto treasure?</h2>
+          </div>
+
+          <div class="bg-zinc-950 border border-zinc-700 rounded-3xl p-10 md:p-14">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-y-8">
+              <div>
+                <div class="text-sm uppercase tracking-[3px] text-amber-400 font-bold mb-2">Premium Strategic Asset</div>
+                <div class="flex items-baseline gap-x-2">
+                  <span class="text-5xl font-extrabold tabular-nums tracking-[-2px]">Price on Request</span>
+                </div>
+                <div class="text-sm text-zinc-400 mt-1">One-time acquisition • Full ownership transfer</div>
+
+                <div class="mt-6 text-sm max-w-xs">
+                  <div class="flex items-center gap-x-2 text-emerald-400">
+                    <i class="fa-solid fa-check"></i>
+                    <span class="font-medium">Comparable premium brandable .com domains in crypto and fintech command significant premiums</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="lg:text-right">
+                <AcquisitionCTA label="Submit Acquisition Inquiry" variant="accent" icon="fa-arrow-right-long" />
+                <div class="mt-4 text-xs text-zinc-400">Serious buyers only • Escrow protected</div>
+              </div>
+            </div>
+
+            <div class="mt-10 pt-8 border-t border-zinc-700 grid grid-cols-1 sm:grid-cols-3 gap-y-6 text-sm">
+              <div>
+                <div class="font-semibold mb-1 flex items-center gap-x-2"><i class="fa-solid fa-handshake text-amber-400"></i> <span>Transaction</span></div>
+                <div class="text-zinc-400">Handled via Escrow.com or your preferred platform. Full domain push + DNS control transfer.</div>
+              </div>
+              <div>
+                <div class="font-semibold mb-1 flex items-center gap-x-2"><i class="fa-solid fa-file-contract text-amber-400"></i> <span>Confidential</span></div>
+                <div class="text-zinc-400">All inquiries are handled confidentially. Pricing reflects brand strength, keyword alignment, linguistic power, versatility, and long-term appreciation potential.</div>
+              </div>
+              <div>
+                <div class="font-semibold mb-1 flex items-center gap-x-2"><i class="fa-solid fa-globe text-amber-400"></i> <span>Why Now?</span></div>
+                <div class="text-zinc-400">The brands that claim clear, ownable language around the global crypto wealth revolution now will hold mindshare for decades.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <div class="bg-gradient-to-b from-zinc-900 to-zinc-950 py-16">
+      <div class="max-w-screen-xl mx-auto px-6 text-center">
+        <div class="max-w-lg mx-auto">
+          <h3 class="font-display text-5xl tracking-[-2px] font-extrabold mb-4">Wealth has<br />a new name.</h3>
+          <p class="text-xl text-zinc-300 mb-8">Claim the premium domain that defines the era of digital treasure.</p>
+
+          <AcquisitionCTA label="Inquire to Acquire" variant="accent" />
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer disclaimer={siteConfig.disclaimer} />
+</BaseLayout>
